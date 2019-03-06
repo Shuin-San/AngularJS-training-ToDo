@@ -7,7 +7,7 @@
  * # TodolistcontrollerCtrl
  * Controller of the toDoApp
  */
-angular.module('toDoApp')
+angular.module('toDoApp', ['ngAnimate'])
   .controller('TodolistcontrollerCtrl',["$scope", function ($scope) {
     
     this.todoLists = [];

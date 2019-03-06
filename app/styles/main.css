@@ -7,6 +7,7 @@
 
 body {
   padding: 0;
+  min-height: 100%;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -35,6 +36,10 @@ body {
   padding-top: 19px;
   color: #777;
   border-top: 1px solid #e5e5e5;
+}
+
+.content {
+  min-height: 300px;
 }
 
 .container-narrow > hr {
@@ -81,7 +86,6 @@ body {
     border-bottom: 0;
   }
 
-
   .reddot {
     height: 10px;
     width: 10px;
@@ -97,4 +101,49 @@ body {
     border-radius: 50%;
     display: inline-block;
   }
+}
+
+
+/*
+  We are using CSS transitions for when the enter and move events
+  are triggered for the element that has the `repeated-item` class
+*/
+.repeated-item.ng-enter, .repeated-item.ng-move {
+  transition: all 0.5s linear;
+  opacity: 0;
+  width: 0%;
+}
+
+/*
+  `.ng-enter-active` and `.ng-move-active` are where the transition destination
+  properties are set so that the animation knows what to animate
+*/
+.repeated-item.ng-enter.ng-enter-active,
+.repeated-item.ng-move.ng-move-active {
+  opacity: 1;
+  width:100%;
+}
+
+/*
+  We are using CSS keyframe animations for when the `leave` event
+  is triggered for the element that has the `repeated-item` class
+*/
+.repeated-item.ng-leave {
+  animation: 0.5s my_animation;
+}
+
+@keyframes my_animation {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 50px;
+  /* line-height: 60px; Vertically center the text there */
+  background-color: #f5f5f5;
 }

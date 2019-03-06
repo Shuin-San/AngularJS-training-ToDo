@@ -36,16 +36,22 @@
         <h1>You have {{item.todoLists.length}} {{item.todoLists.length == 0 || item.todoLists.length != 1 ? 'items' : 'item'}} in your list !</h1>
       </div>
       <div class="row">
+        <div class="col-6">
         <form ng-submit="item.addTodo(newToDo)">
           <input type="text" ng-model="newToDo">
           <button type="submit">Add new To Do </button>
           <br><br>
         </form>
       </div>
-      <div class="row">
+      <div class="col-6">
+          {{item.todoLists == 0 ? 'Add your first to do item' : ''}}        
+      </div>
+
+      </div>
+      <div class="row content">
         <hr><hr>
-        {{item.todoLists == 0 ? 'Add your first to do item' : ''}}
-          <div class="card col-6 d-flex justify-content-between"  ng-repeat="items in item.todoLists">
+        
+          <div class="card col-6 d-flex justify-content-between repeated-item"  ng-repeat="items in item.todoLists">
             <div class="card-body">
                 <h5 class="card-title">{{ items.string }} <br><span class="{{items.done ? 'green' : 'red'}}dot"></span></h5>
                 <h6 class="card-subtitle mb-2 text-muted">#{{ items.id }}</h6>
@@ -62,17 +68,18 @@
   </div>
     </div>
 
-    <div class="footer">
+    <footer class="footer">
       <div class="container">
         <p><span class="glyphicon glyphicon-heart"></span> Shuin</p>
       </div>
-    </div>
+    </footer>
 
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular/angular-animate.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
