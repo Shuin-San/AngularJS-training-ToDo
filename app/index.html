@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-    <!-- endbower -->
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
@@ -44,14 +44,15 @@
       </div>
       <div class="row">
         <hr><hr>
-          <div class="card col-6 d-flex justify-content-between" ng-repeat="item in item.todoLists">
+        {{item.todoLists == 0 ? 'Add your first to do item' : ''}}
+          <div class="card col-6 d-flex justify-content-between"  ng-repeat="items in item.todoLists">
             <div class="card-body">
-                <h5 class="card-title">{{ item.string }} <span class="{{done ? 'green' : 'red'}}dot"></span></h5>
-                <h6 class="card-subtitle mb-2 text-muted">#{{ item.id }}</h6>
-                <p class="card-text">{{item.extras}}</p>
+                <h5 class="card-title">{{ items.string }} <br><span class="{{items.done ? 'green' : 'red'}}dot"></span></h5>
+                <h6 class="card-subtitle mb-2 text-muted">#{{ items.id }}</h6>
+                <p class="card-text">{{items.extras}}</p>
                 <hr>
-                <input type="button" value='Completed' ng-click='item.markComplete(currentItem)'></a>
-                <a href="#" class="card-link">Delete</a>
+                <input type="button" value='Completed' ng-click="items.done = !items.done"></a> | 
+                <input type="button" value='Delete' ng-click="remove(item.todoLists, $index)"></a>
 
             </div>
           </div>

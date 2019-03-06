@@ -8,17 +8,22 @@
  * Controller of the toDoApp
  */
 angular.module('toDoApp')
-  .controller('TodolistcontrollerCtrl', function () {
+  .controller('TodolistcontrollerCtrl',["$scope", function ($scope) {
+    
     this.todoLists = [];
+    this.idCounter = 1
 
     this.addTodo = function(newToDo) {
       if (newToDo != undefined) {
-      this.toAdd = {id: this.todoLists.length, string: newToDo, done: false}; 
+      this.toAdd = {id: this.idCounter, string: newToDo, done: false, visible: true}; 
       this.todoLists.push(this.toAdd);
+      this.idCounter++;
       }
     }
 
-    this.markComplete = function(currentItem){
-      alert(`Clicked ${currentItem}`);
-    }
-  });
+    $scope.remove = function(array, index){
+      array.splice(index, 1)
+  }
+
+
+  }]);
